@@ -15,7 +15,7 @@ Frontiers [Paper](https://www.frontiersin.org/articles/10.3389/fninf.2023.120807
 
 
 - **CACTUS paper data:**
-- Syntetic twins meshes: [data](https://drive.google.com/drive/folders/1S2cdEin0uO91FJpUNGTH_I7ZdVKcNClu?usp=sharing)
+  - Syntetic twins meshes: [data](https://drive.google.com/drive/folders/1S2cdEin0uO91FJpUNGTH_I7ZdVKcNClu?usp=sharing)
 
 
 
