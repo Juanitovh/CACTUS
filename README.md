@@ -8,16 +8,16 @@ Frontiers [Paper](https://www.frontiersin.org/articles/10.3389/fninf.2023.120807
 ***
 
 #### 24 Hours of DIFFUSION Around the World: ISMRM
-
-- **Tutorial data:**
+**Tutorial data:**
   -Small meshes toy example: [data](https://drive.google.com/drive/folders/1G6rz6WjFr7Z5Ii7P16ymfE9KHYm_YVHL?usp=sharing)
 
 
 ***
 
 
-- **CACTUS paper data:**
-  - Syntetic twins meshes: [data](https://drive.google.com/drive/folders/1S2cdEin0uO91FJpUNGTH_I7ZdVKcNClu?usp=sharing)
+#### CACTUS 
+**Paper data**
+  - Synthetic twins meshes: [data](https://drive.google.com/drive/folders/1S2cdEin0uO91FJpUNGTH_I7ZdVKcNClu?usp=sharing)
 
 
 
