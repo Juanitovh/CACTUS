@@ -17,6 +17,7 @@ Details:
 - Minimum fibre radii 0.15 um
 - Maximum fibre radii 2.00 um
 - ICVF 90%
+- Config file to Run simulations with the [MCDC](https://github.com/jonhrafe/MCDC_Simulator_public)
 
 ***
 
