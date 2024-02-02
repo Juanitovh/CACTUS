@@ -23,7 +23,7 @@ Details:
 
 #### CACTUS 
 **Paper data**
-  - Synthetic twins meshes: [data](https://drive.google.com/drive/folders/1S2cdEin0uO91FJpUNGTH_I7ZdVKcNClu?usp=sharing)
+  - Synthetic twins meshes and signal: [data](https://drive.google.com/drive/folders/1S2cdEin0uO91FJpUNGTH_I7ZdVKcNClu?usp=sharing)
 
 Frontiers [Paper](https://www.frontiersin.org/articles/10.3389/fninf.2023.1208073/full)
 
