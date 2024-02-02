@@ -32,6 +32,7 @@ Details:
   - Synthetic twins meshes and DW-MRI simulations: [data](https://drive.google.com/drive/folders/1S2cdEin0uO91FJpUNGTH_I7ZdVKcNClu?usp=sharing)
 
 Frontiers [Paper](https://www.frontiersin.org/articles/10.3389/fninf.2023.1208073/full)
+![image](https://github.com/Juanitovh/CACTUS/assets/53839626/643d1d58-2b3e-4ebb-badf-21c3d01655e0)
 
 
 
