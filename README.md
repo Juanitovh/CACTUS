@@ -24,6 +24,17 @@ Details:
 - ICVF 90%
 - Config file to Run simulations with the [MCDC](https://github.com/jonhrafe/MCDC_Simulator_public)
 
+
+<img src="https://github.com/Juanitovh/CACTUS/assets/53839626/42853e86-b037-4837-a00a-5cff18f5f684" width="200" height="200" />
+
+
+<img src="https://github.com/Juanitovh/CACTUS/assets/53839626/ad92a0ae-2f47-4dff-8c45-c6918e6cae44" width="200" height="200" />
+
+<img src="https://github.com/Juanitovh/CACTUS/assets/53839626/e14dfff2-9d81-412d-9280-51f5cda4f6cf" width="200" height="200" />
+<img src="https://github.com/Juanitovh/CACTUS/assets/53839626/d7997b8c-1901-4baa-8b78-df3e6b9493f2" width="200" height="200" />
+<img src="https://github.com/Juanitovh/CACTUS/assets/53839626/d2d49e28-bac0-465b-9189-eac73540f441" width="200" height="200" />
+
+
 ***
 
 
