@@ -18,3 +18,4 @@ sympy==1.11.1
 tqdm==4.64.1
 trimesh==3.20.2
 vtk==9.2.6
+seaborn==0.13.2
