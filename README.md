@@ -45,15 +45,16 @@ pip install -r requirements_cactus.txt
 bash compile_cpp_code.sh
 ```
 
-## Step 5: Add CACTUS/cactus_scripts to your path
+## Step 5:Optional (recomended) Add CACTUS/cactus_scripts to your path
+
 ```bash
 echo "export PATH=\"$(pwd)/cactus_scripts:\$PATH\"" >> ~/.bashrc
 source ~/.bashrc
 python update_paths.py
-python 
+
 ```
 
-## Step 6: Optional, software to visualize the meshes
+## Step 6: Optional, software to visualize the meshes, or your favorite mesh viewer
 ```bash
 sudo apt install meshlab
 ```
@@ -61,22 +62,27 @@ sudo apt install meshlab
 # Ready to run a quick example
 
 
-The usage of CACTUS is now organized into separate wrapper scripts, each corresponding to a key step of the CACTUS pipeline as outlined in the paper. These wrappers allow users to run the main processes in sequence, with each wrapper handling a specific stage. For example, 1_wrapper_initialization.py initializes the substrate based on the configuration provided in cactus_single.txt, 2_wrapper_optimization.py performs joint fibre optimization, and 3_wrapper_FRG_mesh.py executes the Fibre Radial Growth (FRG) algorithm. The cactus_single.txt file contains all the necessary morphological and hyperparameters to create the substrates, ensuring each step is properly configured for the process.
+## CACTUS Usage Overview
+
+The CACTUS pipeline is now organized into separate wrapper scripts, each handling a specific step of the process outlined in the paper. This structure makes it easy to run the key processes in sequence. 
+
+### Wrapper Scripts:
+1. **`1_wrapper_initialization.py`**: Initializes the substrate using the configuration provided in `cactus_single.txt`.
+2. **`2_wrapper_optimization.py`**: Performs joint fibre optimization.
+3. **`3_wrapper_FRG_mesh.py`**: Executes the Fibre Radial Growth (FRG) algorithm.
+
+### Configuration File:
+The file **`cactus_single.txt`** contains all the necessary morphological parameters and hyperparameters to create the substrates, ensuring each step is properly configured and ready for processing.
 
 
-The "config_files" folder contain files to run CACTUS using the wrappers. 
 
+## Tutorial, toy examples. Can run in personal computer
 To begin the tutorial begin by copying "cactus_single.txt" to a folder of your choice. 
-
-
-
-
 
 
 ## First Step
 This step creates 
 *.init files, that contains the fibre initializations of the substrate.
-
 
 ```bash
 1_wrapper_initialization.py -config_file cactus_single.txt
@@ -95,12 +101,11 @@ meshlab test2.ply
 
 
 
-
-
-## Second step Step: Global oip
+## Second step Step: Global joint optimization
 
 This step will start optimize the substrate using gradient descent. It creates auxiliary files to save different time points of the optimized substrate. 
 The *.partial files are version of the substrate save every 50 iterations.
+
 If the optimization procedure converges, It creates a optimized_final.txt file containing the final version of the substrate
 ```bash
  2_wrapper_optimization.py -config_file cactus_single.txt
@@ -121,6 +126,13 @@ quick_mesh_cactus.py tutorial_single_00001/optimized_final.txt
 meshlab test2.ply
 ```
 
+
+### Substep (optional) 
+You can check the status of the optimization by running the following command. 
+It allows for real time updates to visualize the status the optimization process.
+```bash
+optim_loger.py -folder tutorial_single_00000/
+```
 
 ## Third Step: Fibre Radial Growth
 This step is the last step of the pipeline. It will create a mesh of the optimized substrate and apply the FRG algorithm to it.
@@ -173,9 +185,9 @@ python 3_wrapper_FRG_mesh.py -config_file cactus_single.txt -substep growth -run
 
 After running the FRG algorithm, the output will be saved in the following directories:
 
-- **`meshes/`**: Contains the generated mesh files.
-- **`pickles/`**: Stores FRG metadata in the form of sparse compressed matrices.
-- **`simulations/`**: Contains meshes prepared for simulations.
+- **`meshes/`**: Contains all the outputs
+- **`meshes/pickles/`**: Stores FRG metadata in the form of sparse compressed matrices. **It's heavy on memory**
+- **`/meshes/simulations/`**: Contains meshes prepared for simulations.
 
 ### Visualizing the Meshes
 
@@ -183,6 +195,7 @@ To visualize the generated meshes using **MeshLab**, you can use the following c
 
 ```bash
 meshlab tutorial_single_00000/meshes/simulations/*.ply
+```
 
 
 
