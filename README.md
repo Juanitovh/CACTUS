@@ -39,9 +39,10 @@ git clone https://github.com/username/CACTUS.git
 cd CACTUS
 ```
 
-## Step 4:  Install dependencies 
+## Step 4:  Install dependencies and compile cpp code
 ```bash
 pip install -r requirements_cactus.txt
+bash compile_cpp_code.sh
 ```
 
 Step 5: Add CACTUS/cactus_scripts to your path
