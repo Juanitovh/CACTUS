@@ -10,6 +10,39 @@ CACTUS webpage [http://cactus.epfl.ch/](http://cactus.epfl.ch/)
 
 Frontiers [Paper](https://www.frontiersin.org/articles/10.3389/fninf.2023.1208073/full)
 
+
+
+# CACTUS Installation Guide (Ubuntu)
+
+Follow these steps to install and set up **CACTUS** on Ubuntu.
+
+## Step 1: Update the System
+Update your package manager and upgrade installed packages:
+```bash
+sudo apt update && sudo apt upgrade -y
+```
+##Step 2: Install C++ Compiler, OpenMP, python3, pip, and python-venv
+
+```bash
+sudo apt install -y build-essential g++ libomp-dev
+sudo apt install -y python3 python3-pip python3-venv
+```
+
+##Step 3 Clone the repo
+```bash
+git clone https://github.com/username/CACTUS.git
+cd CACTUS
+```
+
+##Step 4: Create a Virtual Environment and install dependencies 
+```bash
+python3 -m venv cactus_env
+source cactus_env/bin/activate
+pip install -r requirements_cactus.txt
+```
+
+
+
 ***
 
 #### 24 Hours of DIFFUSION Around the World: ISMRM
