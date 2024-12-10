@@ -1,0 +1,86 @@
+/*
+ 	string path = "/home/jppl/Desktop/strand_optimization/strandos/test_overlaping/";
+	string out_folder = "/home/jppl/Desktop/strand_optimization/strandos/test_overlaping/out/";
+	string experiment_name = "test_crossing_";
+	 //vector<vector < vector<double> >> lista = read_nfg_cylinders_in(path);
+	string file = "lista_overlap.txt";
+	vector<vector < vector<double> >> lista = read_generic_cylinder_list(path + file);
+	
+ */
+ 
+	 
+	
+/*
+ 	 string path = "/home/jppl/Desktop/strand_optimization/strandos/test_plane/";
+	string out_folder = "/home/jppl/Desktop/strand_optimization/strandos/test_plane/out/";
+	string experiment_name = "test_crossing_";
+	string file = "test_plane.txt";
+ */
+	 
+	//file = "test_crossing_03800"
+	
+	 
+/*
+ 	 string path = "/home/jppl/Desktop/strand_optimization/strandos/test_huge/";
+	string out_folder = "/home/jppl/Desktop/strand_optimization/strandos/test_huge/out/";
+	string experiment_name = "test_crossing_";
+	string file = "test_huge2.txt";
+			
+ */
+	 
+	
+	/*
+	 string path = "/home/jppl/Desktop/strand_optimization/strandos/test_crossing/";
+	string out_folder = "/home/jppl/Desktop/strand_optimization/strandos/test_crossing/out";
+	string experiment_name = "test_crossing_";
+	 */
+ 
+
+ 	string path = "/home/jppl/Desktop/strand_optimization/strandos/test_simple_crossing/";
+	string out_folder = "/home/jppl/Desktop/strand_optimization/strandos/test_simple_crossing/out/";
+	string experiment_name = "test_crossing_";
+	string file = "test_1mm_cube_v2.txt";
+ 
+	/*
+	 string path = "/home/jppl/Desktop/strand_optimization/strandos/test_plane_big/";
+	string out_folder = "/home/jppl/Desktop/strand_optimization/strandos/test_plane_big/out";
+	string experiment_name = "test_crossing_";
+	vector<vector < vector<double> >> lista = read_3DR_cylinders_in(path);
+*/
+	
+
+/*
+  	    string path = "/home/jppl/Desktop/strand_optimization/strandos/test_plane/";
+	string out_folder = "/home/jppl/Desktop/strand_optimization/strandos/test_plane/out/";
+	string experiment_name = "test_crossing_";
+	string file = "test_plane.txt";
+ */
+ 
+	 
+	//vector<vector < vector<double> >> lista = read_3DR_cylinders_in(path);
+
+	
+	/*
+	 string path = "/home/jppl/Desktop/strand_optimization/strandos/test_gab/";
+	string out_folder = "/home/jppl/Desktop/strand_optimization/strandos/test_gab/out";
+	string experiment_name = "test_crossing_";
+	vector<vector < vector<double> >> lista = read_nfg_cylinders_in(path);
+
+	 */
+
+	
+
+ 	
+	
+
+ 	
+/*
+ 	  string path = "/home/jppl/Documents/Jony_mini_phantom/";
+	string file = "jony_cylist2.txt";
+	//file = "test_crossing_02400";
+	string out_folder = "/home/jppl/Documents/Jony_mini_phantom/out/";
+	string experiment_name = "test_crossing_";
+ */
+	 
+ 
+
