@@ -61,11 +61,134 @@ sudo apt install meshlab
 # Ready to run a quick example
 
 
+The usage of CACTUS is now organized into separate wrapper scripts, each corresponding to a key step of the CACTUS pipeline as outlined in the paper. These wrappers allow users to run the main processes in sequence, with each wrapper handling a specific stage. For example, 1_wrapper_initialization.py initializes the substrate based on the configuration provided in cactus_single.txt, 2_wrapper_optimization.py performs joint fibre optimization, and 3_wrapper_FRG_mesh.py executes the Fibre Radial Growth (FRG) algorithm. The cactus_single.txt file contains all the necessary morphological and hyperparameters to create the substrates, ensuring each step is properly configured for the process.
+
+
+The "config_files" folder contain files to run CACTUS using the wrappers. 
+
+To begin the tutorial begin by copying "cactus_single.txt" to a folder of your choice. 
 
 
 
 
 
+
+## First Step
+This step creates 
+*.init files, that contains the fibre initializations of the substrate.
+
+
+```bash
+1_wrapper_initialization.py -config_file cactus_single.txt
+```
+
+
+
+### Substep (optionall create a mesh of the init file)
+We can use and include script to quickly generate a mesh using cylinder.
+Then we can use meshlab to open it
+```bash
+quick_mesh_cactus.py tutorial_single_00000.init
+meshlab test2.ply
+```
+
+
+
+
+
+
+## Second step Step: Global oip
+
+This step will start optimize the substrate using gradient descent. It creates auxiliary files to save different time points of the optimized substrate. 
+The *.partial files are version of the substrate save every 50 iterations.
+If the optimization procedure converges, It creates a optimized_final.txt file containing the final version of the substrate
+```bash
+ 2_wrapper_optimization.py -config_file cactus_single.txt
+```
+
+### Substep (optionall create a mesh of the partial file or the final file)
+We can use and include script to quickly generate a mesh using cylinder.
+Then we can use meshlab to open it
+For any of the partials.
+```bash
+quick_mesh_cactus.py tutorial_single_00001/optimized_00100.partial
+meshlab test2.ply
+```
+
+For the final optimized version
+```bash
+quick_mesh_cactus.py tutorial_single_00001/optimized_final.txt
+meshlab test2.ply
+```
+
+
+## Third Step: Fibre Radial Growth
+This step is the last step of the pipeline. It will create a mesh of the optimized substrate and apply the FRG algorithm to it.
+It needs the optimized_final.txt file to run. Also, it's quite computationally expensive.
+
+
+
+### FRG: Select a Case and Substep
+
+To use the CACTUS pipeline, you need to choose a **case** to run and specify the appropriate **substep**. 
+
+- The **case** determines  which strands to process.
+- The **substep** defines whether you are growing or meshing the fibres.
+
+### 1. **Choosing a Case**:
+- **test**: Run a small batch of fibres to check hyperparameters and ensure correct processing.
+- **missing**: Process fibres that are missing or were wrongly computed.
+- **all**: Process 100% of the fibres (not recommended on a single laptop due to high computational demand).
+
+### 2. **Choosing a Substep**:
+- **growth**: Grow fibres in discrete space (slow process, needed to prepare the structure).
+- **mesh**: Mesh the fibres (fast process, done after growth).
+
+### Example Usage:
+
+1. **Run the "growth" substep in the "test" case**:
+```bash
+python 3_wrapper_FRG_mesh.py -config_file cactus_single.txt -substep growth -run_case test -file tutorial_single_00000.init
+```
+
+
+
+2. Run the "mesh" substep in the "test" case:
+
+This command will grow the fibres for a small test batch using the cactus_single.txt configuration file and the tutorial_single_00000.init file for input.
+
+```bash
+python 3_wrapper_FRG_mesh.py -config_file cactus_single.txt -substep mesh -run_case test -file tutorial_single_00000.init
+```
+
+
+
+3. Optional: Try the "missing" case and check the results:
+```bash
+python 3_wrapper_FRG_mesh.py -config_file cactus_single.txt -substep growth -run_case missing -file tutorial_single_00000.init
+```
+
+
+### Output
+
+After running the FRG algorithm, the output will be saved in the following directories:
+
+- **`meshes/`**: Contains the generated mesh files.
+- **`pickles/`**: Stores FRG metadata in the form of sparse compressed matrices.
+- **`simulations/`**: Contains meshes prepared for simulations.
+
+### Visualizing the Meshes
+
+To visualize the generated meshes using **MeshLab**, you can use the following command:
+
+```bash
+meshlab tutorial_single_00000/meshes/simulations/*.ply
+
+
+
+
+
+# Done
 ***
 
 #### 24 Hours of DIFFUSION Around the World: ISMRM

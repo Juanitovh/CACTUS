@@ -33,19 +33,15 @@ def parse_arguments():
         default=None
     )
     parser.add_argument(
-    "-run_case",
-    help="""Select a CASE to run:
-    - test: Run a small batch of fibres to check hyperparameters and ensure proper processing.
-    - missing: Grow/mesh all fibres that are missing or were wrongly computed.
-    - all: Grow/mesh 100% of the fibres. NOT RECOMMENDED on a single laptop.""",
-    choices=["test", "missing", "all"],
-    default="test"
+        '-substep', help="Select one of the two substeps: 1) growth: Growing in discrete space, it's slow. 2) mesh: Meshing the fibres, it's fast.",
+        choices=["growth", "mesh"],
+        type=str
     )
     parser.add_argument(
-        '-substep', help="""Select one of the two substeps:
-        growth: Growing in discrete space, it's slow.
-        mesh: Meshing the fibres, it's fast.""",
-        choices=["growth", "mesh"]
+    "-run_case",
+    help="CASE to run. 1) test: Run a small batch of fibres to check hyperparameters and ensure proper processing. 2) missing: process all fibres that are missing or were wrongly computed. 3) all: process all the fibres. NOT RECOMMENDED on a single laptop.",
+    choices=["test", "missing", "all"],
+    type=str,
     )
     return parser.parse_args()
 
@@ -55,7 +51,6 @@ def main():
     ascii_art.print_message("Third Step Algorithm ")
 
     # Parse arguments
-    args = parse_arguments()
 
     # Read configuration file
     if args.config_file ==None:
@@ -158,5 +153,7 @@ def main():
         print("#" * 20)
         ascii_art.print_message("Done!")
 
+
 if __name__ == "__main__":
+    args = parse_arguments()
     main()
