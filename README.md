@@ -12,7 +12,7 @@ Frontiers [Paper](https://www.frontiersin.org/articles/10.3389/fninf.2023.120807
 
 
 
-# CACTUS Installation Guide (Ubuntu)
+# CACTUS Installation Guide in bash Ubunt
 
 Follow these steps to install and set up **CACTUS** on Ubuntu.
 
@@ -22,10 +22,15 @@ Update your package manager and upgrade installed packages:
 sudo apt update && sudo apt upgrade -y
 ```
 ##Step 2: Install C++ Compiler, OpenMP, python3, pip, and python-venv
-
-```bash
+```bash 
 sudo apt install -y build-essential g++ libomp-dev
 sudo apt install -y python3 python3-pip python3-venv
+```
+
+#Step 3 Create a Virtual Environment and source it
+```bash
+python3 -m venv cactus_env
+source cactus_env/bin/activate
 ```
 
 ##Step 3 Clone the repo
@@ -34,11 +39,19 @@ git clone https://github.com/username/CACTUS.git
 cd CACTUS
 ```
 
-##Step 4: Create a Virtual Environment and install dependencies 
+##Step 4:  Install dependencies 
 ```bash
-python3 -m venv cactus_env
-source cactus_env/bin/activate
 pip install -r requirements_cactus.txt
+```
+
+Step 5: Add CACTUS/cactus_scripts to your path
+```bash
+echo 'export PATH="$(pwd):$PATH"' >> ~/.bashrc
+```
+
+Step 6: Compile the C++ code  
+```bash
+echo 'export PATH="$(pwd):$PATH"' >> ~/.bashrc
 ```
 
 
