@@ -40,7 +40,7 @@ def update_optimizer_path(file_path):
         file_path (str): Path to the CactusPath.py file.
     """
     current_directory = os.getcwd()
-    new_cactus_code_line = f'    "global_optimizer": str("{current_directory}/cactus_scripts/joint_fibre_optimizer.out)",\n'
+    new_cactus_code_line = f'    "global_optimizer": str("{current_directory}/cactus_scripts/joint_fibre_optimizer.out"),\n'
 
     try:
         # Read the file and modify the 'cactus_code' line

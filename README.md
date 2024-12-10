@@ -45,7 +45,7 @@ pip install -r requirements_cactus.txt
 bash compile_cpp_code.sh
 ```
 
-Step 5: Add CACTUS/cactus_scripts to your path
+## Step 5: Add CACTUS/cactus_scripts to your path
 ```bash
 echo "export PATH=\"$(pwd)/cactus_scripts:\$PATH\"" >> ~/.bashrc
 source ~/.bashrc
@@ -53,7 +53,16 @@ python update_paths.py
 python 
 ```
 
-## Ready to run a quick example
+## Step 6: Optional, software to visualize the meshes
+```bash
+sudo apt install meshlab
+```
+
+# Ready to run a quick example
+
+
+
+
 
 
 

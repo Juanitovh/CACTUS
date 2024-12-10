@@ -158,7 +158,7 @@ if strand_id is None:
 else: 
     my_range = strand_id#range(strand_id,strand_id+1)
 
-n_take = 4
+n_take = 1
 """ if len(my_range) > 2000: """
 """     n_take = 3 """
 """ elif len(my_range) > 5_000: """
