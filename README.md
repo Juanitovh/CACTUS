@@ -21,38 +21,38 @@ Update your package manager and upgrade installed packages:
 ```bash
 sudo apt update && sudo apt upgrade -y
 ```
-##Step 2: Install C++ Compiler, OpenMP, python3, pip, and python-venv
+## Step 2: Install C++ Compiler, OpenMP, python3, pip, and python-venv
 ```bash 
 sudo apt install -y build-essential g++ libomp-dev
 sudo apt install -y python3 python3-pip python3-venv
 ```
 
-#Step 3 Create a Virtual Environment and source it
+## Step 3 Create a Virtual Environment and source it
 ```bash
 python3 -m venv cactus_env
 source cactus_env/bin/activate
 ```
 
-##Step 3 Clone the repo
+## Step 3 Clone the repo
 ```bash
 git clone https://github.com/username/CACTUS.git
 cd CACTUS
 ```
 
-##Step 4:  Install dependencies 
+## Step 4:  Install dependencies 
 ```bash
 pip install -r requirements_cactus.txt
 ```
 
 Step 5: Add CACTUS/cactus_scripts to your path
 ```bash
-echo 'export PATH="$(pwd):$PATH"' >> ~/.bashrc
+echo "export PATH=\"$(pwd)/cactus_scripts:\$PATH\"" >> ~/.bashrc
+source ~/.bashrc
+python update_paths.py
+python 
 ```
 
-Step 6: Compile the C++ code  
-```bash
-echo 'export PATH="$(pwd):$PATH"' >> ~/.bashrc
-```
+## Ready to run a quick example
 
 
 
