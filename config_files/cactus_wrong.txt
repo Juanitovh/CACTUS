@@ -1,0 +1,48 @@
+#Step1: Substrate Initialization parameters
+
+#### Algorithm parameters
+outfile tutorial_wrong
+n_cores 10
+verbose 1 
+
+
+
+#substrate constant parameters
+n_bundles 1
+lenght_side 30
+min_rad .27
+max_rad 3.0
+bias -.03
+
+
+### combinational parameters
+number_of_repetitions 1
+icvf 0.3 0.75
+dispersion 10 
+
+gamma_theta 2.40 
+gamma_kappa 0.25 
+
+
+
+
+#Step 2: joint fibre optimization parameters 
+
+optimization_tolerance 50
+max_iterations 3000
+alpha 1
+subdivisions_number 10
+
+
+#Step 3: Fibre radial growth (FRG) and meshing parameteres
+
+grid_size 0.35
+growth_iterations 4
+n_segments 4
+colorless 1
+sim_vol simulations
+inn_out outer
+g_ratio 0.7
+n_erode 0
+
+

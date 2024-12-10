@@ -1,0 +1,54 @@
+#Step1: Substrate Initialization parameters
+
+#### Algorithm parameters
+outfile tutorial_crossing
+n_cores 10
+verbose 1 
+
+
+#substrate constant parameters
+n_bundles 2
+lenght_side 30
+min_rad .20
+max_rad 3.0
+
+
+### combinational parameters
+number_of_repetitions 2
+icvf 0.5
+dispersion 2.5
+
+gamma_theta 3.0
+gamma_kappa  0.20
+
+
+### crossing combinational parameters
+crossing_angle 60
+overlap .5
+
+#fixed crossing parameter
+depth_lenght_bundle 100
+bias -.03
+
+
+
+#Step 2: joint fibre optimization parameters 
+
+optimization_tolerance 3000
+max_iterations 3000
+alpha 1
+
+
+#Step 3: Fibre radial growth (FRG) and meshing parameteres
+
+grid_size 0.2
+growth_iterations 6
+n_segments 4
+colorless 1
+sim_vol simulations
+n_erode 0
+inn_out outer
+g_ratio 0.7
+
+subdivisions_number 10
+
