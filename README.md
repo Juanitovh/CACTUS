@@ -35,7 +35,7 @@ source cactus_env/bin/activate
 
 ## Step 3 Clone the repo
 ```bash
-git clone https://github.com/username/CACTUS.git
+git clone https://github.com/Juanitovh/CACTUS.git
 cd CACTUS
 ```
 
