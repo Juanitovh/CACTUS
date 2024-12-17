@@ -160,7 +160,7 @@ To use the CACTUS pipeline, you need to choose a **case** to run and specify the
 
 1. **Run the "growth" substep in the "test" case**:
 ```bash
-python 3_wrapper_FRG_mesh.py -config_file cactus_single.txt -substep growth -run_case test -file tutorial_single_00000.init
+3_wrapper_FRG_mesh.py -config_file cactus_single.txt -substep growth -run_case test -file tutorial_single_00000.init
 ```
 
 
@@ -170,14 +170,14 @@ python 3_wrapper_FRG_mesh.py -config_file cactus_single.txt -substep growth -run
 This command will grow the fibres for a small test batch using the cactus_single.txt configuration file and the tutorial_single_00000.init file for input.
 
 ```bash
-python 3_wrapper_FRG_mesh.py -config_file cactus_single.txt -substep mesh -run_case test -file tutorial_single_00000.init
+3_wrapper_FRG_mesh.py -config_file cactus_single.txt -substep mesh -run_case test -file tutorial_single_00000.init
 ```
 
 
 
 3. Optional: Try the "missing" case and check the results:
 ```bash
-python 3_wrapper_FRG_mesh.py -config_file cactus_single.txt -substep growth -run_case missing -file tutorial_single_00000.init
+3_wrapper_FRG_mesh.py -config_file cactus_single.txt -substep growth -run_case missing -file tutorial_single_00000.init
 ```
 
 
