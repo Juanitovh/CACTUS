@@ -5,8 +5,54 @@ import math
 from numba import jit
 import sys
 
+import numpy as np
 
 def rotation_matrix_from_vectors(vec1, vec2):
+    """
+    Find the rotation matrix that aligns vec1 to vec2 without introducing unnecessary rotations.
+    
+    :param vec1: A 3D "source" vector (numpy array).
+    :param vec2: A 3D "destination" vector (numpy array).
+    :return: A 3x3 rotation matrix which aligns vec1 to vec2.
+    """
+    vec1 = np.array(vec1, dtype=np.float64)
+    vec2 = np.array(vec2, dtype=np.float64)
+    
+    # Normalize input vectors
+    a = vec1 / np.linalg.norm(vec1)
+    b = vec2 / np.linalg.norm(vec2)
+    
+    # If vectors are already aligned, return identity matrix
+    if np.allclose(a, b):
+        return np.eye(3)
+    
+    # If vectors are opposite, return a rotation matrix for a 180-degree rotation around any perpendicular axis
+    if np.allclose(a, -b):
+        # Find an arbitrary vector perpendicular to `a`
+        perp_vector = np.array([1, 0, 0]) if abs(a[0]) < 0.9 else np.array([0, 1, 0])
+        perp_vector -= np.dot(perp_vector, a) * a  # Make it orthogonal to `a`
+        perp_vector /= np.linalg.norm(perp_vector)  # Normalize
+        # Construct the rotation matrix for 180 degrees around this axis
+        v = perp_vector
+        return np.eye(3) - 2 * np.outer(v, v)
+    
+    # Calculate cross product and dot product
+    v = np.cross(a, b)
+    c = np.dot(a, b)
+    s = np.linalg.norm(v)
+    
+    # Skew-symmetric cross-product matrix
+    kmat = np.array([[0, -v[2], v[1]],
+                     [v[2], 0, -v[0]],
+                     [-v[1], v[0], 0]])
+    
+    # Compute the rotation matrix
+    rotation_matrix = np.eye(3) + kmat + kmat.dot(kmat) * ((1 - c) / (s ** 2))
+    
+    return rotation_matrix
+
+
+def rotation_matrix_from_vectors_old(vec1, vec2):
     """ Find the rotation matrix that aligns vec1 to vec2
     :param vec1: A 3d "source" vector
     :param vec2: A 3d "destination" vector
