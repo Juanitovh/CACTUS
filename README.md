@@ -1,17 +1,26 @@
-<img src="https://github.com/Juanitovh/CACTUS/assets/53839626/1440936f-f3aa-453f-bed6-8afc28b26b2c" width="200" height="200" />
-<img src="https://github.com/Juanitovh/CACTUS/assets/53839626/9a43c5be-980e-4e98-a8dd-4dfe7d05e192" width="200" height="200" />
-<img src="https://github.com/Juanitovh/CACTUS/assets/53839626/ccbc15b8-ec17-45af-8b63-25331edf0582" width="200" height="200" />
-<img src="https://cactus.epfl.ch/images/icvf2.gif" width="200" height="200" />
-<img src="https://cactus.epfl.ch/images/ezgif.com-resize1.gif" width="200" height="200" />
-<img src="https://cactus.epfl.ch/images/high_pack.png" width="200" height="200" />
-<img src="https://cactus.epfl.ch/images/animation.gif" width="200" height="200" />
-<img src="https://cactus.epfl.ch/images/ezgif.com-resize.gif" width="200" height="200" />
-<img src="https://cactus.epfl.ch/images/disco_mesh.png" width="200" height="200" />
-
-
 # CACTUS
 
 ## A Computational Framework for Generating Realistic White Matter Microstructure Substrates
+
+<div align="center">
+  <table>
+    <tr>
+      <td><img src="https://github.com/Juanitovh/CACTUS/assets/53839626/1440936f-f3aa-453f-bed6-8afc28b26b2c" width="200" height="200" /></td>
+      <td><img src="https://github.com/Juanitovh/CACTUS/assets/53839626/9a43c5be-980e-4e98-a8dd-4dfe7d05e192" width="200" height="200" /></td>
+      <td><img src="https://github.com/Juanitovh/CACTUS/assets/53839626/ccbc15b8-ec17-45af-8b63-25331edf0582" width="200" height="200" /></td>
+    </tr>
+    <tr>
+      <td><img src="https://cactus.epfl.ch/images/icvf2.gif" width="200" height="200" /></td>
+      <td><img src="https://cactus.epfl.ch/images/ezgif.com-resize1.gif" width="200" height="200" /></td>
+      <td><img src="https://cactus.epfl.ch/images/high_pack.png" width="200" height="200" /></td>
+    </tr>
+    <tr>
+      <td><img src="https://cactus.epfl.ch/images/animation.gif" width="200" height="200" /></td>
+      <td><img src="https://cactus.epfl.ch/images/ezgif.com-resize.gif" width="200" height="200" /></td>
+      <td><img src="https://cactus.epfl.ch/images/disco_mesh.png" width="200" height="200" /></td>
+    </tr>
+  </table>
+</div>
 
 CACTUS (Computational Axonal Configurator for Tailored and Ultradense Substrates) is a computational workflow for generating realistic synthetic white matter substrates. It enables the creation of complex tissue structures with high packing densities, large voxel sizes, and diverse fibre configurations. The generated substrates are ideal for Monte-Carlo diffusion simulations, aiding in the validation of diffusion-weighted MRI (DW-MRI) models.
 
