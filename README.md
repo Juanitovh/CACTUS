@@ -7,10 +7,10 @@
     <tr>
       <td><img src="https://github.com/Juanitovh/CACTUS/assets/53839626/1440936f-f3aa-453f-bed6-8afc28b26b2c" width="200" height="200" /></td>
       <td><img src="https://cactus.epfl.ch/images/icvf2.gif" width="200" height="200" /></td>
-      <td><img src="https://cactus.epfl.ch/images/Screenshotfrom2022-08-1818-59-59.png" width="200" height="200" /></td>
+      <td><img src="https://cactus.epfl.ch/images/ezgif.com-resize.gif" width="200" height="200" /></td>
     </tr>
     <tr>
-      <td><img src="https://cactus.epfl.ch/images/icvf2.gif" width="200" height="200" /></td>
+      <td><img src="https://cactus.epfl.ch/images/cross_002.png" width="200" height="200" /></td>
       <td><img src="https://cactus.epfl.ch/images/ezgif.com-resize1.gif" width="200" height="200" /></td>
       <td><img src="https://cactus.epfl.ch/images/high_pack.png" width="200" height="200" /></td>
     </tr>
