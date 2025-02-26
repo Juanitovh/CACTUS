@@ -6,8 +6,8 @@
   <table>
     <tr>
       <td><img src="https://github.com/Juanitovh/CACTUS/assets/53839626/1440936f-f3aa-453f-bed6-8afc28b26b2c" width="200" height="200" /></td>
-      <td><img src="https://github.com/Juanitovh/CACTUS/assets/53839626/9a43c5be-980e-4e98-a8dd-4dfe7d05e192" width="200" height="200" /></td>
-      <td><img src="https://github.com/Juanitovh/CACTUS/assets/53839626/ccbc15b8-ec17-45af-8b63-25331edf0582" width="200" height="200" /></td>
+      <td><img src="https://cactus.epfl.ch/images/icvf2.gif" width="200" height="200" /></td>
+      <td><img src="https://cactus.epfl.ch/images/Screenshotfrom2022-08-1818-59-59.png" width="200" height="200" /></td>
     </tr>
     <tr>
       <td><img src="https://cactus.epfl.ch/images/icvf2.gif" width="200" height="200" /></td>
