@@ -1,70 +1,102 @@
+<div align="center">
+
 # CACTUS
 
-## A Computational Framework for Generating Realistic White Matter Microstructure Substrates
+### Computational Axonal Configurator for Tailored and Ultradense Substrates
 
-<div align="center">
-  <table>
-    <tr>
-      <td><img src="https://github.com/Juanitovh/CACTUS/assets/53839626/1440936f-f3aa-453f-bed6-8afc28b26b2c" width="200" height="200" /></td>
-      <td><img src="https://cactus.epfl.ch/images/icvf2.gif" width="200" height="200" /></td>
-      <td><img src="https://cactus.epfl.ch/images/ezgif.com-resize.gif" width="200" height="200" /></td>
-    </tr>
-    <tr>
-      <td><img src="https://cactus.epfl.ch/images/cross_002.png" width="200" height="200" /></td>
-      <td><img src="https://cactus.epfl.ch/images/ezgif.com-resize1.gif" width="200" height="200" /></td>
-      <td><img src="https://cactus.epfl.ch/images/high_pack.png" width="200" height="200" /></td>
-    </tr>
-    <tr>
-      <td><img src="https://cactus.epfl.ch/images/animation.gif" width="200" height="200" /></td>
-      <td><img src="https://cactus.epfl.ch/images/ezgif.com-resize.gif" width="200" height="200" /></td>
-      <td><img src="https://cactus.epfl.ch/images/disco_mesh.png" width="200" height="200" /></td>
-    </tr>
-  </table>
+[![Python 3.9+](https://img.shields.io/badge/python-3.9%2B-blue.svg)](https://www.python.org/downloads/)
+[![C++20](https://img.shields.io/badge/C%2B%2B-20-00599C.svg)](https://en.cppreference.com/w/cpp/20)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Paper](https://img.shields.io/badge/Frontiers-10.3389%2Ffninf.2023.1208073-red.svg)](https://www.frontiersin.org/articles/10.3389/fninf.2023.1208073/full)
+
+*A computational framework for generating realistic white matter microstructure substrates for Monte-Carlo diffusion simulations and DW-MRI model validation.*
+
+**[Website](http://cactus.epfl.ch/)** &bull; **[Paper](https://www.frontiersin.org/articles/10.3389/fninf.2023.1208073/full)** &bull; **[Tutorial Data](https://drive.google.com/drive/folders/1G6rz6WjFr7Z5Ii7P16ymfE9KHYm_YVHL?usp=sharing)**
+
+<br>
+
+<table>
+  <tr>
+    <td><img src="https://github.com/Juanitovh/CACTUS/assets/53839626/1440936f-f3aa-453f-bed6-8afc28b26b2c" width="200" height="200" /></td>
+    <td><img src="https://cactus.epfl.ch/images/icvf2.gif" width="200" height="200" /></td>
+    <td><img src="https://cactus.epfl.ch/images/ezgif.com-resize.gif" width="200" height="200" /></td>
+  </tr>
+  <tr>
+    <td><img src="https://cactus.epfl.ch/images/cross_002.png" width="200" height="200" /></td>
+    <td><img src="https://cactus.epfl.ch/images/ezgif.com-resize1.gif" width="200" height="200" /></td>
+    <td><img src="https://cactus.epfl.ch/images/high_pack.png" width="200" height="200" /></td>
+  </tr>
+  <tr>
+    <td><img src="https://cactus.epfl.ch/images/animation.gif" width="200" height="200" /></td>
+    <td><img src="https://cactus.epfl.ch/images/ezgif.com-resize.gif" width="200" height="200" /></td>
+    <td><img src="https://cactus.epfl.ch/images/disco_mesh.png" width="200" height="200" /></td>
+  </tr>
+</table>
+
 </div>
 
-CACTUS (Computational Axonal Configurator for Tailored and Ultradense Substrates) is a computational workflow for generating realistic synthetic white matter substrates. It enables the creation of complex tissue structures with high packing densities, large voxel sizes, and diverse fibre configurations. The generated substrates are ideal for Monte-Carlo diffusion simulations, aiding in the validation of diffusion-weighted MRI (DW-MRI) models.
+<br>
 
-For more details, refer to:
-- **[CACTUS Website](http://cactus.epfl.ch/)**
-- **[Published Paper](https://www.frontiersin.org/articles/10.3389/fninf.2023.1208073/full)**
+## Overview
 
-> **Branches:** The `main` branch contains the original version of CACTUS as published in the paper. The `master` branch is version 1.5 of the CACTUS library, featuring significant changes: proper Python packaging (`pip install`), a unified CLI (`cactus1-substrates`), Makefile-based C++ builds, snake_case module naming, and dynamic path resolution.
+CACTUS generates realistic synthetic white matter substrates with high packing densities, large voxel sizes, and diverse fibre configurations. The framework implements a three-stage pipeline:
+
+1. **Initialization** &mdash; Place fibres on a grid using Watson distribution for angular dispersion and gamma distribution for radii
+2. **Optimization** &mdash; Refine fibre arrangement via Adagrad gradient descent (C++ with OpenMP) to minimize overlaps and reach target packing density
+3. **Growth & Meshing** &mdash; Apply the Fibre Radial Growth (FRG) algorithm with marching cubes to produce 3D PLY meshes
+
+The generated substrates are designed for Monte-Carlo diffusion simulators such as [MCDC](https://github.com/jonhrafe/MCDC_Simulator_public).
+
+---
+
+## Branches
+
+| Branch | Description |
+|--------|-------------|
+| `main` | Original version from the published paper |
+| `master` | **v1.5** &mdash; Significant refactoring, pip-installable package with unified CLI |
 
 ---
 
 ## Installation
 
 ### Prerequisites
-- Python >= 3.10
-- g++ with C++20 and OpenMP support (`sudo apt install build-essential g++ libomp-dev`)
 
-### Install
+- **Python** >= 3.9
+- **g++** with C++20 and OpenMP support
+
+```bash
+# Ubuntu / Debian
+sudo apt install build-essential g++ libomp-dev
+```
+
+### Quick start
 
 ```bash
 git clone https://github.com/Juanitovh/CACTUS.git
 cd CACTUS
-make
+make          # Compiles C++ optimizer + installs Python package
 ```
 
-This compiles the C++ optimizer and installs the Python package in editable mode. The `cactus1-substrates` CLI command becomes available.
+This makes the `cactus1-substrates` CLI available system-wide.
 
-### Alternative: manual install
+<details>
+<summary><b>Manual install (advanced)</b></summary>
 
 ```bash
-# Compile C++ optimizer
-make build-cpp
-
-# Install Python package
-pip install -e .
+make build-cpp       # Compile C++ optimizer only
+pip install -e .     # Install Python package in editable mode
 ```
+
+</details>
 
 ---
 
 ## Usage
 
-CACTUS provides a single CLI entry point with subcommands for each pipeline stage:
+CACTUS provides a unified CLI with subcommands for each pipeline stage.
 
-### Step 1: Initialize fibre placements
+### Stage 1 &mdash; Initialize fibre placements
 
 Creates `.init` files with initial fibre positions based on morphological parameters.
 
@@ -72,7 +104,7 @@ Creates `.init` files with initial fibre positions based on morphological parame
 cactus1-substrates init -config_file config_files/cactus_single.txt
 ```
 
-### Step 2: Global joint optimization
+### Stage 2 &mdash; Global joint optimization
 
 Refines fibre arrangement using gradient descent. Produces `optimized_final.txt`.
 
@@ -80,38 +112,36 @@ Refines fibre arrangement using gradient descent. Produces `optimized_final.txt`
 cactus1-substrates optimize -config_file config_files/cactus_single.txt
 ```
 
-### Step 3: Fibre radial growth and meshing
+### Stage 3 &mdash; Fibre radial growth & meshing
 
-Applies the FRG algorithm and generates PLY meshes.
+Applies the FRG algorithm and generates PLY meshes via marching cubes.
 
 ```bash
-# Growth substep (slow, computationally intensive)
+# Growth substep (computationally intensive)
 cactus1-substrates grow -config_file config_files/cactus_single.txt -substep growth -run_case test
 
 # Mesh substep (fast, follows growth)
 cactus1-substrates grow -config_file config_files/cactus_single.txt -substep mesh -run_case test
 ```
 
-Run case options: `test` (small batch), `missing` (only incomplete fibres), `all` (full dataset).
+> **Run case options:** `test` (small batch) &bull; `missing` (only incomplete fibres) &bull; `all` (full dataset)
 
 ### Quick mesh generation
 
 Generate a mesh directly from a strand file:
 
 ```bash
-cactus1-substrates quick-mesh -file my_strands.txt
-cactus1-substrates quick-mesh -file my_strands.txt --parallel -output output.ply
+cactus1-substrates quick-mesh -file optimized_final.txt
+cactus1-substrates quick-mesh -file optimized_final.txt --parallel -output output.ply
 ```
 
-### Monitor optimization progress
+### Utilities
 
 ```bash
+# Monitor optimization progress in real time
 cactus1-substrates monitor -folder my_experiment/
-```
 
-### Convert NFG format to CACTUS format
-
-```bash
+# Convert NFG format to CACTUS format
 cactus1-substrates convert -folder nfg_strands/ -outfile output.txt
 ```
 
@@ -119,53 +149,107 @@ cactus1-substrates convert -folder nfg_strands/ -outfile output.txt
 
 ## Configuration
 
-Use `config_files/cactus_single.txt` for single-bundle substrates and `config_files/cactus_crossing.txt` for crossing fibre bundles. The config file format uses space-separated key-value pairs; multiple values on one line create parameter sweeps.
+Configuration files use space-separated key-value pairs. Multiple values on a single line create parameter sweeps.
+
+| Config file | Use case |
+|-------------|----------|
+| `config_files/cactus_single.txt` | Single fibre bundle substrates |
+| `config_files/cactus_crossing.txt` | Crossing fibre bundle substrates |
 
 ---
 
-## Output Directories
-- **`meshes/`**: Stores all generated meshes
-- **`meshes/pickles/`**: Contains compressed metadata
-- **`meshes/simulations/`**: Holds simulation-ready meshes
+## Output
 
-### Visualizing the Meshes
+| Extension | Stage | Description |
+|-----------|:-----:|-------------|
+| `.init` | 1 | Initial fibre placements |
+| `.partial` | 2 | Optimization checkpoints (every 50 iterations) |
+| `optimized_final.txt` | 2 | Final optimized fibre configuration |
+| `.bz2` pickles | 3 | Compressed voxel-space metadata |
+| `.ply` | 3 | 3D triangle meshes |
+
+### Visualizing meshes
+
 ```bash
 meshlab tutorial_single_00000/meshes/simulations/*.ply
 ```
 
 ---
 
-## References
+## Architecture
 
-#### 24 Hours of DIFFUSION Around the World: ISMRM
-**Tutorial data:**
-  - Small meshes toy example: [data](https://drive.google.com/drive/folders/1G6rz6WjFr7Z5Ii7P16ymfE9KHYm_YVHL?usp=sharing)
+```
+src/cactus1_substrate/
+├── cli.py               # Unified CLI entry point
+├── paths.py             # Dynamic path resolution
+├── core/                # Library modules
+│   ├── cactus_math, rotating_strand, wattson_function, ...
+├── pipeline/            # Three-stage pipeline wrappers
+│   ├── initialization, optimization, growth_mesh
+├── workers/             # Parallelized heavy computation
+│   ├── meta_grid, bake_mesh_pickle, grid_initialization, ...
+└── tools/               # Standalone utilities
+    ├── quick_mesh, optim_logger, nfg2cactus, ...
+```
 
-Details:
-- 5 substrates: mean fibre radii of 0.20 um, 0.25 um, 0.35 um , 0.60 um , 0.75 um
-- Voxel size (40 um)^3
-- Minimum fibre radii 0.15 um
-- Maximum fibre radii 2.00 um
-- ICVF 90%
-- Config file to Run simulations with the [MCDC](https://github.com/jonhrafe/MCDC_Simulator_public)
+---
 
+## Data & Resources
 
-<img src="https://github.com/Juanitovh/CACTUS/assets/53839626/42853e86-b037-4837-a00a-5cff18f5f684" width="150" height="150" />
-<img src="https://github.com/Juanitovh/CACTUS/assets/53839626/ad92a0ae-2f47-4dff-8c45-c6918e6cae44" width="150" height="150" />
-<img src="https://github.com/Juanitovh/CACTUS/assets/53839626/e14dfff2-9d81-412d-9280-51f5cda4f6cf" width="150" height="150" />
-<img src="https://github.com/Juanitovh/CACTUS/assets/53839626/d7997b8c-1901-4baa-8b78-df3e6b9493f2" width="150" height="150" />
-<img src="https://github.com/Juanitovh/CACTUS/assets/53839626/d2d49e28-bac0-465b-9189-eac73540f441" width="150" height="150" />
+<details>
+<summary><b>24 Hours of DIFFUSION Around the World (ISMRM Tutorial)</b></summary>
 
+<br>
 
-***
+**[Download tutorial data](https://drive.google.com/drive/folders/1G6rz6WjFr7Z5Ii7P16ymfE9KHYm_YVHL?usp=sharing)**
 
-#### CACTUS
-**Paper data**
-  - Synthetic twins meshes and DW-MRI simulations: [data](https://drive.google.com/drive/folders/1S2cdEin0uO91FJpUNGTH_I7ZdVKcNClu?usp=sharing)
+5 substrates with mean fibre radii of 0.20, 0.25, 0.35, 0.60, and 0.75 &mu;m:
+- Voxel size: (40 &mu;m)&sup3;
+- Fibre radii range: 0.15 &ndash; 2.00 &mu;m
+- ICVF: 90%
 
-Frontiers [Paper](https://www.frontiersin.org/articles/10.3389/fninf.2023.1208073/full)
-<img src="https://github.com/Juanitovh/CACTUS/assets/53839626/643d1d58-2b3e-4ebb-badf-21c3d01655e0" width=50% />
+<div align="center">
+<img src="https://github.com/Juanitovh/CACTUS/assets/53839626/42853e86-b037-4837-a00a-5cff18f5f684" width="130" />
+<img src="https://github.com/Juanitovh/CACTUS/assets/53839626/ad92a0ae-2f47-4dff-8c45-c6918e6cae44" width="130" />
+<img src="https://github.com/Juanitovh/CACTUS/assets/53839626/e14dfff2-9d81-412d-9280-51f5cda4f6cf" width="130" />
+<img src="https://github.com/Juanitovh/CACTUS/assets/53839626/d7997b8c-1901-4baa-8b78-df3e6b9493f2" width="130" />
+<img src="https://github.com/Juanitovh/CACTUS/assets/53839626/d2d49e28-bac0-465b-9189-eac73540f441" width="130" />
+</div>
 
+</details>
 
+<details>
+<summary><b>Paper data &mdash; Synthetic twins & DW-MRI simulations</b></summary>
 
-***
+<br>
+
+**[Download paper data](https://drive.google.com/drive/folders/1S2cdEin0uO91FJpUNGTH_I7ZdVKcNClu?usp=sharing)**
+
+<div align="center">
+<img src="https://github.com/Juanitovh/CACTUS/assets/53839626/643d1d58-2b3e-4ebb-badf-21c3d01655e0" width="60%" />
+</div>
+
+</details>
+
+---
+
+## Citation
+
+If you use CACTUS in your research, please cite:
+
+```bibtex
+@article{villarreal2023cactus,
+  title     = {CACTUS: A Computational Framework for Generating Realistic
+               White Matter Microstructure Substrates},
+  author    = {Villarreal-Haro, Juan Luis and others},
+  journal   = {Frontiers in Neuroinformatics},
+  year      = {2023},
+  doi       = {10.3389/fninf.2023.1208073}
+}
+```
+
+---
+
+<div align="center">
+<sub>Developed at <b>EPFL</b> &bull; Signal Processing Laboratory (LTS5)</sub>
+</div>
