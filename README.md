@@ -49,15 +49,6 @@ The generated substrates are designed for Monte-Carlo diffusion simulators such 
 
 ---
 
-## Branches
-
-| Branch | Description |
-|--------|-------------|
-| `main` | Original version from the published paper |
-| `master` | **v1.5** &mdash; Significant refactoring, pip-installable package with unified CLI |
-
----
-
 ## Installation
 
 ### Prerequisites
@@ -81,7 +72,7 @@ make          # Compiles C++ optimizer + installs Python package
 This makes the `cactus1-substrates` CLI available system-wide.
 
 <details>
-<summary><b>Manual install (advanced)</b></summary>
+<summary><b>Manual install</b></summary>
 
 ```bash
 make build-cpp       # Compile C++ optimizer only
