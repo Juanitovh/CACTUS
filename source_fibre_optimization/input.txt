@@ -1,4 +1,0 @@
-path     /home/juanluis/Documents/strand_optimization/test_cases/jony_list/
-initial_conditions jony_cylist4.txt
-path_out /home/juanluis/Documents/strand_optimization/test_cases/jony_list/out/
-# esto no sirve para nada

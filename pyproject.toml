@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cactus1-substrates"
+version = "2.0.0"
+description = "CACTUS — Computational Axonal Configurator for Tailored and Ultradense Substrates"
+requires-python = ">=3.9"
+dependencies = [
+    "icecream",
+    "matplotlib",
+    "numba",
+    "numpy",
+    "scipy",
+    "scikit-image",
+    "scikit-learn",
+    "opencv-python",
+    "nibabel",
+    "pyvista",
+    "progressbar2",
+    "psutil",
+    "seaborn",
+    "sparse",
+    "tqdm",
+    "rich",
+    "openmesh",
+]
+
+[project.scripts]
+cactus1-substrates = "cactus1_substrate.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

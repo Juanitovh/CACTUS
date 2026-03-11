@@ -1,4 +1,19 @@
-
+# Python
+__pycache__/
 *.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# C++ build
+source_fibre_optimization/*.o
+source_fibre_optimization/joint_fibre_optimizer
 *.out
 
+# IDE / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store

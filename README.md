@@ -28,167 +28,120 @@ For more details, refer to:
 - **[CACTUS Website](http://cactus.epfl.ch/)**
 - **[Published Paper](https://www.frontiersin.org/articles/10.3389/fninf.2023.1208073/full)**
 
+> **Branches:** The `main` branch contains the original version of CACTUS as published in the paper. The `master` branch is version 1.5 of the CACTUS library, featuring significant changes: proper Python packaging (`pip install`), a unified CLI (`cactus1-substrates`), Makefile-based C++ builds, snake_case module naming, and dynamic path resolution.
+
 ---
 
-# Installation Guide (Ubuntu)
+## Installation
 
-Follow these steps to install and set up **CACTUS** on Ubuntu.
+### Prerequisites
+- Python >= 3.10
+- g++ with C++20 and OpenMP support (`sudo apt install build-essential g++ libomp-dev`)
 
-## Step 1: Update System Packages
-```bash
-sudo apt update && sudo apt upgrade -y
-```
+### Install
 
-## Step 2: Install Dependencies
-Install the required C++ compiler, OpenMP, Python, and related libraries:
-```bash
-sudo apt install -y build-essential g++ libomp-dev
-sudo apt install -y python3 python3-pip python3-venv
-```
-
-## Step 3: Create and Activate a Virtual Environment
-```bash
-python3 -m venv cactus_env
-source cactus_env/bin/activate
-```
-
-## Step 4: Clone the Repository
 ```bash
 git clone https://github.com/Juanitovh/CACTUS.git
 cd CACTUS
+make
 ```
 
-## Step 5: Install Python Dependencies and Compile C++ Code
-```bash
-pip install -r requirements_cactus.txt
-bash compile_cpp_code.sh
-```
+This compiles the C++ optimizer and installs the Python package in editable mode. The `cactus1-substrates` CLI command becomes available.
 
-## Step 6 (Optional): Add CACTUS Scripts to System Path
-This step simplifies running CACTUS commands from any location.
-```bash
-echo "export PATH=\"$(pwd)/cactus_scripts:\$PATH\"" >> ~/.bashrc
-source ~/.bashrc
-python update_paths.py
-```
+### Alternative: manual install
 
-## Step 7 (Optional): Install a Mesh Viewer (e.g., MeshLab)
 ```bash
-sudo apt install meshlab
+# Compile C++ optimizer
+make build-cpp
+
+# Install Python package
+pip install -e .
 ```
 
 ---
 
-# Running a Quick Example
+## Usage
 
-## Overview of CACTUS Pipeline
-CACTUS consists of several wrapper scripts that execute different steps of the pipeline sequentially.
+CACTUS provides a single CLI entry point with subcommands for each pipeline stage:
 
-### Wrapper Scripts:
-1. **`1_wrapper_initialization.py`**: Initializes the substrate based on parameters in `cactus_single.txt`.
-2. **`2_wrapper_optimization.py`**: Optimizes the fibres using gradient descent.
-3. **`3_wrapper_FRG_mesh.py`**: Performs Fibre Radial Growth (FRG) and meshing.
+### Step 1: Initialize fibre placements
 
-### Configuration File:
-The **`cactus_single.txt`** file contains all necessary morphological parameters and hyperparameters for substrate generation.
+Creates `.init` files with initial fibre positions based on morphological parameters.
+
+```bash
+cactus1-substrates init -config_file config_files/cactus_single.txt
+```
+
+### Step 2: Global joint optimization
+
+Refines fibre arrangement using gradient descent. Produces `optimized_final.txt`.
+
+```bash
+cactus1-substrates optimize -config_file config_files/cactus_single.txt
+```
+
+### Step 3: Fibre radial growth and meshing
+
+Applies the FRG algorithm and generates PLY meshes.
+
+```bash
+# Growth substep (slow, computationally intensive)
+cactus1-substrates grow -config_file config_files/cactus_single.txt -substep growth -run_case test
+
+# Mesh substep (fast, follows growth)
+cactus1-substrates grow -config_file config_files/cactus_single.txt -substep mesh -run_case test
+```
+
+Run case options: `test` (small batch), `missing` (only incomplete fibres), `all` (full dataset).
+
+### Quick mesh generation
+
+Generate a mesh directly from a strand file:
+
+```bash
+cactus1-substrates quick-mesh -file my_strands.txt
+cactus1-substrates quick-mesh -file my_strands.txt --parallel -output output.ply
+```
+
+### Monitor optimization progress
+
+```bash
+cactus1-substrates monitor -folder my_experiment/
+```
+
+### Convert NFG format to CACTUS format
+
+```bash
+cactus1-substrates convert -folder nfg_strands/ -outfile output.txt
+```
 
 ---
 
-# Tutorial: Running CACTUS Step-by-Step
+## Configuration
 
-## Step 1: Initialize the Substrate
-This step creates `.init` files containing initial fibre placements.
-```bash
-1_wrapper_initialization.py -config_file cactus_single.txt
-```
-
-### (Optional) Generate a Mesh from Initialization File
-To visualize the initialized substrate:
-```bash
-quick_mesh_cactus.py tutorial_single_00000.init
-meshlab test2.ply
-```
-
----
-
-## Step 2: Global Joint Optimization
-This step refines the fibre arrangement using gradient descent. Intermediate states are saved as `.partial` files every 50 iterations. The final optimized substrate is stored in `optimized_final.txt`.
-```bash
-2_wrapper_optimization.py -config_file cactus_single.txt
-```
-
-### (Optional) Generate a Mesh from Optimization Output
-For an intermediate `.partial` file:
-```bash
-quick_mesh_cactus.py tutorial_single_00001/optimized_00100.partial
-meshlab test2.ply
-```
-For the final optimized substrate:
-```bash
-quick_mesh_cactus.py tutorial_single_00001/optimized_final.txt
-meshlab test2.ply
-```
-
-### (Optional) Monitor Optimization Progress in Real Time
-```bash
-optim_loger.py -folder tutorial_single_00000/
-```
-
----
-
-## Step 3: Fibre Radial Growth (FRG)
-This final step applies the FRG algorithm to generate detailed fibre structures. It requires `optimized_final.txt` and is computationally intensive.
-
-### Selecting a Case and Substep
-**Run Case Options:**
-- **test**: Small batch of fibres (recommended for debugging)
-- **missing**: Processes only missing or incorrect fibres
-- **all**: Full dataset (requires significant computational power)
-
-**Substep Options:**
-- **growth**: Expands fibres in discrete space (slow but necessary)
-- **mesh**: Converts fibres into a mesh format (fast, follows growth step)
-
-### Example Usage
-Run the **growth** substep on a small test batch:
-```bash
-3_wrapper_FRG_mesh.py -config_file cactus_single.txt -substep growth -run_case test -file tutorial_single_00000.init
-```
-
-Run the **mesh** substep for the test case:
-```bash
-3_wrapper_FRG_mesh.py -config_file cactus_single.txt -substep mesh -run_case test -file tutorial_single_00000.init
-```
-
-Process missing fibres:
-```bash
-3_wrapper_FRG_mesh.py -config_file cactus_single.txt -substep growth -run_case missing -file tutorial_single_00000.init
-```
+Use `config_files/cactus_single.txt` for single-bundle substrates and `config_files/cactus_crossing.txt` for crossing fibre bundles. The config file format uses space-separated key-value pairs; multiple values on one line create parameter sweeps.
 
 ---
 
 ## Output Directories
 - **`meshes/`**: Stores all generated meshes
-- **`meshes/pickles/`**: Contains compressed metadata (memory-intensive)
+- **`meshes/pickles/`**: Contains compressed metadata
 - **`meshes/simulations/`**: Holds simulation-ready meshes
 
 ### Visualizing the Meshes
-To open the generated mesh files in MeshLab:
 ```bash
 meshlab tutorial_single_00000/meshes/simulations/*.ply
 ```
 
 ---
 
-# CACTUS is Ready to Use!
-Your CACTUS pipeline is now set up and ready for generating realistic white matter microstructure substrates. 🎉
-
+## References
 
 #### 24 Hours of DIFFUSION Around the World: ISMRM
 **Tutorial data:**
-  -Small meshes toy example: [data](https://drive.google.com/drive/folders/1G6rz6WjFr7Z5Ii7P16ymfE9KHYm_YVHL?usp=sharing)
+  - Small meshes toy example: [data](https://drive.google.com/drive/folders/1G6rz6WjFr7Z5Ii7P16ymfE9KHYm_YVHL?usp=sharing)
 
-Details: 
+Details:
 - 5 substrates: mean fibre radii of 0.20 um, 0.25 um, 0.35 um , 0.60 um , 0.75 um
 - Voxel size (40 um)^3
 - Minimum fibre radii 0.15 um
@@ -206,8 +159,7 @@ Details:
 
 ***
 
-
-#### CACTUS 
+#### CACTUS
 **Paper data**
   - Synthetic twins meshes and DW-MRI simulations: [data](https://drive.google.com/drive/folders/1S2cdEin0uO91FJpUNGTH_I7ZdVKcNClu?usp=sharing)
 
