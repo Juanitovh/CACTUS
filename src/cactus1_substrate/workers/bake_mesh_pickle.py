@@ -397,7 +397,7 @@ def main():
         if not os.path.isfile(args.missing_axon_file) :
             ascii_art.print_important_message("Asked to run missing, but there are not any more missing... \n or maybe a problem with the missing file")
         else:
-            strands_id = list(np.loadtxt(args.missing_axon_file , dtype=int))
+            strands_id = list(np.atleast_1d(np.loadtxt(args.missing_axon_file , dtype=int)))
 
 
     max_erosions = int(args.n_erode)
@@ -415,7 +415,7 @@ def main():
         strands_id = [-1]
     else:
         ascii_art.print_message("Processing missing strands")
-        strands_id = list(np.loadtxt(args.missing_axon_file , dtype=int))
+        strands_id = list(np.atleast_1d(np.loadtxt(args.missing_axon_file , dtype=int)))
 
 
     try:

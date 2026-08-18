@@ -833,7 +833,7 @@ def main():
 
     print(os.getcwd())
     if args.missing_axons ==1:
-        strands_id = list(np.loadtxt("0_missing_strands.txt" , dtype=int))
+        strands_id = list(np.atleast_1d(np.loadtxt("0_missing_strands.txt" , dtype=int)))
 
     if args.missing_axon_file == "error":
         ascii_art.print_error_message("Asked to run missing, but there are not any more missing... \n or maybe a problem with the missing file")
@@ -843,7 +843,7 @@ def main():
         strands_id = [-1]
     else:
         ascii_art.print_message("Processing missing strands")
-        strands_id = list(np.loadtxt(args.missing_axon_file , dtype=int))
+        strands_id = list(np.atleast_1d(np.loadtxt(args.missing_axon_file , dtype=int)))
 
 
     ascii_art.print_message("Starting the mesh generation")
