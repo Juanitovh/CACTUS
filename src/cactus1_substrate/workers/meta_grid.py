@@ -61,6 +61,7 @@ def parse_arguments():
     parser.add_argument("-file", type=str, help="list of strands" , default='')
     parser.add_argument("-grid_size", type=float, help="step of metaball space")
     parser.add_argument("-iterations", type=int, help="iterations heat" , default = 5)
+    parser.add_argument("-n_cores", type=int, help="worker processes; default keeps the historical cpu_count()//2", default = 0)
     parser.add_argument("-batch_id", type=int, help="current batch working on" , default=0)
     parser.add_argument("-n_batchs", type=int, help="number of batches to split the runn" , default=1)
     parser.add_argument("-strand_id", type=str, help="strand id from the separated by commas eg 2,3,11" , default='-1')
@@ -878,8 +879,10 @@ def main():
     bb_simulation =  np.array([ (- box_lenght_simulations/2 , box_lenght_simulations/2) for i in range(3)]).T
 
 
-    n_pool = multiprocessing.cpu_count()/2
-    n_pool = int(n_pool)
+    # `n_cores` from the config now reaches here; 0 keeps the historical cpu_count()//2 default. Each
+    # worker holds a full voxel grid, so this is the knob that decides peak memory for the whole step.
+    n_pool = args.n_cores if args.n_cores and args.n_cores > 0 else multiprocessing.cpu_count() // 2
+    n_pool = max(1, int(n_pool))
 
 
     part_indexes = np.linspace(0,n, total_parts+1).astype(int)

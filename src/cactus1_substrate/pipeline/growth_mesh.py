@@ -139,7 +139,8 @@ def main(args=None):
             command_run = [sys.executable, "-m", "cactus1_substrate.workers.meta_grid",
                            "-file", file_name, "-missing_axon_file", missing_axon_file,
                            "-iterations", str(cactus_args.growth_iterations),
-                           "-grid_size", str(cactus_args.grid_size)]
+                           "-grid_size", str(cactus_args.grid_size),
+                           "-n_cores", str(cactus_args.n_cores)]
         elif args.substep == "mesh":
             command_run = [sys.executable, "-m", "cactus1_substrate.workers.bake_mesh_pickle",
                            "-file", file_name, "-missing_axon_file", missing_axon_file,
@@ -147,7 +148,8 @@ def main(args=None):
                            "-inn_out", str(cactus_args.inn_out),
                            "-sim_vol", str(cactus_args.sim_vol),
                            "-n_erode", str(cactus_args.n_erode),
-                           "-g_ratio", str(cactus_args.g_ratio)]
+                           "-g_ratio", str(cactus_args.g_ratio),
+                           "-n_cores", str(cactus_args.n_cores)]
         else:
             ascii_art.print_error_message("Error!!! Select a run_case")
             exit()

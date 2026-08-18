@@ -72,6 +72,7 @@ def parse_arguments():
     parser.add_argument("-missing_axon_file", type=str, help="list of missing axons to be proccessed" , default="error")
 
     parser.add_argument("-n_erode", type=int, help="number of erosions to perfon" , default=0)
+    parser.add_argument("-n_cores", type=int, help="worker processes; default keeps the historical cpu_count()//2", default = 0)
     parser.add_argument("-colorless", type=int,  help="include color mesh" ,default =1)
     parser.add_argument("-q", "--quiet", action="store_true")
     parser.add_argument("-f", "--force" , action="store_true",  help="force rewriting")
@@ -449,7 +450,8 @@ def main():
     n= RC.count_number_streamlines(cactus_paths.optimized_final)
     print(f"Number of strands {n}")
 
-    n_pool = multiprocessing.cpu_count()//2
+    n_pool = args.n_cores if getattr(args, 'n_cores', 0) else multiprocessing.cpu_count()//2
+    n_pool = max(1, int(n_pool))
 
     part_indexes = np.linspace(0,n, total_parts+1).astype(int)
 
