@@ -84,7 +84,8 @@ def try_read_ply(i):
     #check if strand_file exists
     idi = None
     if not os.path.isfile(strand_file):
-        missing_strands.append(i)
+        # the caller collects this from the RETURN value below; `missing_strands` is a local of main()
+        # and is not visible in a pool worker, so appending to it here raised NameError
         #print(f"{strand_file} is missing")
 
         if args.delete_pickles == 1:
