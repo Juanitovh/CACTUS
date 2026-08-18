@@ -399,10 +399,13 @@ def handle_temperature(T , typeT , i,j,k):
         v = get_neighbours_3D_index(i,j,k, index)
         inner_type = typeT[v]
         if  inner_type != 0:
-            try :
-                my_dicto[inner_type] +=1
-            except:
-                my_dicto[inner_type] =1
+            # A membership test, not try/except: every NEW key raises KeyError, and numba's runtime does
+            # not free memory on the exception unwind path -- a measured 80.2 bytes per raise, never
+            # returned. This runs once per voxel per iteration, so it leaked in proportion to work done.
+            if inner_type in my_dicto:
+                my_dicto[inner_type] += 1
+            else:
+                my_dicto[inner_type] = 1
 
     types = list(my_dicto.keys())
 
@@ -444,10 +447,11 @@ def handle_temperature_new(T , typeT , i,j,k):
         v = get_neighbours_3D_index(i,j,k, index)
         inner_type = typeT[v]
         if  inner_type != 0:
-            try :
+            # same numba exception-unwind leak as in handle_temperature above
+            if inner_type in my_dicto:
                 my_dicto[inner_type] += T[v]
-            except:
-                my_dicto[inner_type]  = T[v]
+            else:
+                my_dicto[inner_type] = T[v]
 
     keys    = list(my_dicto.keys())
     my_vals = list(my_dicto.values())
