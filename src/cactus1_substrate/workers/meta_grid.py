@@ -78,7 +78,8 @@ def parse_arguments():
 
 @jit(nopython = True)
 def sample_spherical(npoints, ndim=3):
-    vec = np.random.randn( npoints ,ndim)
+    npoints = int(npoints)
+    vec = np.random.standard_normal((npoints, ndim))
     for i in range (npoints):
         vec[i] = vec[i]/np.linalg.norm(vec[i])
     return vec
